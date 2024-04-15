@@ -1,13 +1,13 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Example Stage') {
             when {
-                // execute this stage only for Pull requests
+                // Execute this stage only for Pull requests
                 expression { return env.CHANGE_ID != null }
             }
             steps {
-                echo " this is running on PR"
+                echo "This is running on a Pull Request"
             }
         }
     }
