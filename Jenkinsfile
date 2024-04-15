@@ -1,24 +1,13 @@
 pipeline {
-    agent {
-        label 'java-slave'
-    }
-    tools {
-        maven 'MAVEN_HOME'
-    }
+    agent any
     stages {
-        stage("Build") {
-            steps {
-                echo "hello welcome to tool section"
-                sh "mvn --version"
-            }
-        }
-        stage("cartmaven") {
-            tools {
-                jdk 'jdk-17'
+        stage {
+            when('Build') {
+                // execute this stage only for Pull requests
+                expression { return env.CHANGE_ID != null }
             }
             steps {
-                echo "hello, welcome to tool section"
-                sh 'mvn --version'
+                echo " this is running on PR"
             }
         }
     }
