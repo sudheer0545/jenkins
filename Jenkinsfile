@@ -1,8 +1,8 @@
 pipeline {
     agent any
     stages {
-        stage {
-            when('Build') {
+        stage('Build') {
+            when {
                 // execute this stage only for Pull requests
                 expression { return env.CHANGE_ID != null }
             }
